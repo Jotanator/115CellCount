@@ -8,9 +8,12 @@ from tensorflow import keras
 
 
 def load_image_list(img_files):
+    print("argument passed into load_image_list: ", img_files)
     imgs = []
     for image_file in img_files:
         imgs += [cv2.imread(image_file)]
+
+    print("imgs at the end of load_image_list: ", imgs)
     return imgs
 
 
@@ -157,6 +160,7 @@ def train_generator(imgs, mask, edge,
 
         while True:
             # Pick random image
+            print(len(imgs))
             i = np.random.randint(len(imgs))
 
             # Pick random central location in the image (200 + 196/2)

@@ -5,8 +5,9 @@ import model
 
 
 def run_training(model_name):
-    train_img_files = glob.glob('data/train/*.jpg')
-    test_img_files = glob.glob('data/test/*.jpg')
+    train_img_files = glob.glob('../data/train/*.jpg')
+    print("training images found: ", train_img_files)
+    test_img_files = glob.glob('../data/test/*.jpg')
 
     do_unet = model.DO_UNet(train_img_files,
                             test_img_files,
@@ -15,7 +16,7 @@ def run_training(model_name):
     do_unet.fit(model_name,
                 epochs=100,
                 imgs_per_epoch=1000,
-                batchsize=8,
+                batchsize=1,
                 workers=8)
 
 

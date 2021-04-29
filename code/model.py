@@ -315,7 +315,7 @@ class DO_UNet:
     def fit(self, model_name,
             epochs=40,
             imgs_per_epoch=1000,
-            batchsize=8,
+            batchsize=1,
             workers=8):
 
         return self.model.fit(self.train_dataset.batch(batchsize),
