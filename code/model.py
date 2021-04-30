@@ -313,8 +313,8 @@ class DO_UNet:
                                         'edge': [mean_iou, dsc, tversky]})
 
     def fit(self, model_name,
-            epochs=4,
-            imgs_per_epoch=100,
+            epochs=40,
+            imgs_per_epoch=1000,
             batchsize=1,
             workers=8):
 
