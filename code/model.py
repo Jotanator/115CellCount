@@ -332,6 +332,19 @@ class DO_UNet:
 
 
 
+    def predict(self, model_name, img_files, 
+                batchsize=1,
+                workers=8,):
+
+        imgs = load_image_list(img_files)
+        imgs = clahe_images(imgs)
+        return self.model.predict(imgs, 
+                                  batchsize=batchsize,
+                                  workers=workers,
+                                  max_queue_size=2*workers,
+                                  verbose=1,
+                                  callbacks=get_callbacks(model_name))
+    
 
 
 
