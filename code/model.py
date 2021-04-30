@@ -322,7 +322,7 @@ class DO_UNet:
                               epochs=epochs,
                               steps_per_epoch=(imgs_per_epoch // batchsize),
                               #validation_data=self.test_dataset.batch(batchsize),
-                              validation_split=0.2
+                              validation_split=0.2,
                               max_queue_size=2*workers,
                               use_multiprocessing=False,
                               workers=8,
