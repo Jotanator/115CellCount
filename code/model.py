@@ -322,6 +322,7 @@ class DO_UNet:
                               epochs=epochs,
                               steps_per_epoch=(imgs_per_epoch // batchsize),
                               validation_data=self.test_dataset.batch(batchsize),
+                              #validation_split=0.2,
                               max_queue_size=2*workers,
                               use_multiprocessing=False,
                               workers=8,
@@ -331,6 +332,19 @@ class DO_UNet:
 
 
 
+    def predict(self, model_name, img_files, 
+                batchsize=1,
+                workers=8,):
+
+        imgs = data.load_image_list(img_files)
+        imgs = data.clahe_images(imgs)
+        return self.model.predict(imgs, 
+                                  batch_size=batchsize,
+                                  workers=workers,
+                                  max_queue_size=2*workers,
+                                  verbose=1,
+                                  callbacks=get_callbacks(model_name))
+    
 
 
 
