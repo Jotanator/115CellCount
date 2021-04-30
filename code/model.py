@@ -336,10 +336,10 @@ class DO_UNet:
                 batchsize=1,
                 workers=8,):
 
-        imgs = load_image_list(img_files)
-        imgs = clahe_images(imgs)
+        imgs = data.load_image_list(img_files)
+        imgs = data.clahe_images(imgs)
         return self.model.predict(imgs, 
-                                  batchsize=batchsize,
+                                  batch_size=batchsize,
                                   workers=workers,
                                   max_queue_size=2*workers,
                                   verbose=1,

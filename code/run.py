@@ -2,6 +2,7 @@
 import glob
 
 import model
+import data
 
 
 def run_training(model_name):
@@ -18,6 +19,12 @@ def run_training(model_name):
                 imgs_per_epoch=100,
                 batchsize=1,
                 workers=8)
+
+
+    img_files = glob.glob('../data/test/*.jpg')
+    do_unet.predict(model_name,
+                    img_files,
+                    )
 
 def run_prediction(file_dir, model_name):
     train_img_files = glob.glob('../data/train/*.jpg')
