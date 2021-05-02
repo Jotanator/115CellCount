@@ -65,7 +65,7 @@ def convert_json(oldJ):
     
     newJ['markup'] = markup
 
-    newJ['completed_chips'] = [],
+    newJ['completed_chips'] = []
     newJ['last_viewed_chip'] = {
         'x': None,
         'y': None
