@@ -25,11 +25,11 @@ def convert_json(oldJ):
             'vertices': [{'x': point[0], 'y': point[1]} for point in shape['points']], # old is list of lists, new is list of dicts
             'bounding_box': {}, # computed below
             'object_label': shape['label'],
-            'marker': 'DESKTOP-068MSQM', # ???
+            'marker': 'DESKTOP-5GQQF3B', # ???
             'marker_comments': []
         }
 
-        # theres probably a faster way to do this
+        # there's probably a faster way to do this
         minX = maxX = shape['points'][0][0]
         minY = maxY = shape['points'][0][1]
         for point in shape['points']:
@@ -77,8 +77,8 @@ def convert_json(oldJ):
 if __name__ == '__main__':
 
     for filename in os.listdir('./'):
-        print(filename)
         if filename.endswith('.json'):
+            print("reading ", filename)
             with open(filename) as file:
                 oldJ = json.load(file)
                 newJ = convert_json(oldJ)
