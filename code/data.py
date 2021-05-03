@@ -8,12 +8,12 @@ from tensorflow import keras
 
 
 def load_image_list(img_files):
-    print("argument passed into load_image_list: ", img_files)
+    #print("argument passed into load_image_list: ", img_files)
     imgs = []
     for image_file in img_files:
         imgs += [cv2.imread(image_file)]
 
-    print("imgs at the end of load_image_list: ", imgs)
+    #print("imgs at the end of load_image_list: ", imgs)
     return imgs
 
 
@@ -36,12 +36,18 @@ def get_label(word):
 
 
 def make_polygon_lists(markup_files):
+    print("Starting func")
     marked_dicts = []
+    print("Markup files:")
+    print(markup_files)
     for file_name in markup_files:
+        print("File name:")
+        print(file_name)
         if os.path.isfile(file_name):
             with open(file_name, 'r') as markup_file:
                 marked_dicts += [json.load(markup_file)]
-
+    print("This is marked dicts")
+    print(marked_dicts)
     polygon_lists_list = []
     for marked_dict in marked_dicts:
         polygon_list = []
@@ -50,7 +56,10 @@ def make_polygon_lists(markup_files):
             vertex_list = []
 
             for vertex in poly['vertices']:
-                vertex_list += [(vertex['x'], vertex['y'])]
+                vertex_list += [(int(vertex['x']), int(vertex['y']))]
+                #print("__________")
+                #print(vertex_list)
+                #print("__________")
             polygon_list += [(vertex_list, get_label(poly['object_label']))]
 
         polygon_lists_list += [polygon_list]
@@ -100,8 +109,9 @@ def preprocess_data(imgs, mask, edge, padding=200):
 def load_data(img_list, edge_size=2, padding=200):
     imgs = load_image_list(img_list)
     imgs = clahe_images(imgs)
-
-    markup_list = [f.split('.')[0] + '.json' for f in img_list]
+    print("Image list:")
+    print(img_list)
+    markup_list = [f[:-4] + '.json' for f in img_list]
     mask, edge = load_markup(markup_list, imgs, edge_size=edge_size)
 
     return preprocess_data(imgs, mask, edge, padding=padding)
