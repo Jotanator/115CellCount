@@ -30,9 +30,7 @@ def clahe_images(img_list):
 def get_label(word):
     words_to_numerical_labels_dict = {
         'None': 0,
-        'Truck': 1,
-        'Tanker': 2,
-        'Trailer': 3
+        'Cell': 1
     }
     return words_to_numerical_labels_dict[word]
 
