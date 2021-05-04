@@ -40,6 +40,7 @@ def run_prediction(file_dir, model_name):
     do_unet = model.DO_UNet(train_img_files,
                             test_img_files,
                             scale_invariant=True)
+    do_unet.model.load_weights('models/Test_scale_best.h5')
     do_unet.predict(model_name,
                     img_files,
                     )
