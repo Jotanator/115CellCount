@@ -1,8 +1,9 @@
 """Run the model"""
 import glob
-
+import numpy as np
 import model
 import data
+from PIL import Image
 
 
 def run_training(model_name):
@@ -15,16 +16,22 @@ def run_training(model_name):
                             scale_invariant=True)
 
     do_unet.fit(model_name,
-                epochs=10,
-                imgs_per_epoch=100,
+                epochs=1,
+                imgs_per_epoch=2,
                 batchsize=1,
                 workers=8)
 
 
     img_files = glob.glob('../data/test/*.jpg')
-    do_unet.predict(model_name,
+    print("Result:")
+    array = do_unet.predict(model_name,
                     img_files,
                     )
+    print(array)
+    np.save("../data/test/380", array)
+    #img = Image.fromarray(array[1][0], 'RGB')
+    #img.save('../data/test/new.png')
+    #img.show()
 
 def run_prediction(file_dir, model_name):
     train_img_files = glob.glob('../data/train/*.jpg')

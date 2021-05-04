@@ -1,6 +1,6 @@
 """Return the model"""
 import tensorflow as tf
-
+import numpy as np
 import data
 
 
@@ -337,13 +337,12 @@ class DO_UNet:
                 workers=8,):
 
         imgs = data.load_image_list(img_files)
+        #imgs.reshape(batchsize, 380, 380, 3)
         imgs = data.clahe_images(imgs)
-        return self.model.predict(imgs, 
-                                  batch_size=batchsize,
-                                  workers=workers,
-                                  max_queue_size=2*workers,
-                                  verbose=1,
-                                  callbacks=get_callbacks(model_name))
+        
+        #for img in imgs:
+        #  img.reshape(380, 380, 3)
+        return self.model.predict_on_batch(np.array(imgs).reshape(batchsize, 380, 380, 3))
     
 
 
