@@ -36,18 +36,18 @@ def get_label(word):
 
 
 def make_polygon_lists(markup_files):
-    print("Starting func")
+    #print("Starting func")
     marked_dicts = []
-    print("Markup files:")
-    print(markup_files)
+    #print("Markup files:")
+    #print(markup_files)
     for file_name in markup_files:
-        print("File name:")
-        print(file_name)
+        #print("File name:")
+        #print(file_name)
         if os.path.isfile(file_name):
             with open(file_name, 'r') as markup_file:
                 marked_dicts += [json.load(markup_file)]
-    print("This is marked dicts")
-    print(marked_dicts)
+    #print("This is marked dicts")
+    #print(marked_dicts)
     polygon_lists_list = []
     for marked_dict in marked_dicts:
         polygon_list = []
@@ -109,8 +109,8 @@ def preprocess_data(imgs, mask, edge, padding=200):
 def load_data(img_list, edge_size=2, padding=200):
     imgs = load_image_list(img_list)
     imgs = clahe_images(imgs)
-    print("Image list:")
-    print(img_list)
+    #print("Image list:")
+    #print(img_list)
     markup_list = [f[:-4] + '.json' for f in img_list]
     mask, edge = load_markup(markup_list, imgs, edge_size=edge_size)
 
@@ -168,7 +168,7 @@ def train_generator(imgs, mask, edge,
 
         while True:
             # Pick random image
-            print(len(imgs))
+            #print(len(imgs))
             i = np.random.randint(len(imgs))
 
             # Pick random central location in the image (200 + 196/2)

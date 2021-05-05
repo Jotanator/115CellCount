@@ -316,7 +316,7 @@ class DO_UNet:
             epochs=40,
             imgs_per_epoch=1000,
             batchsize=1,
-            workers=8):
+            workers=1):
 
         return self.model.fit(self.train_dataset.batch(batchsize),
                               epochs=epochs,
@@ -325,7 +325,7 @@ class DO_UNet:
                               #validation_split=0.2,
                               max_queue_size=2*workers,
                               use_multiprocessing=False,
-                              workers=8,
+                              workers=workers,
                               verbose=1,
                               callbacks=get_callbacks(model_name))
 
