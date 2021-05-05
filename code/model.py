@@ -106,7 +106,8 @@ def get_callbacks(name):
         tf.keras.callbacks.ModelCheckpoint(f'models/{name}_best.h5',
                                            save_best_only=True,
                                            save_weights_only=True,
-                                           verbose=1)
+                                           verbose=1),
+       tf.keras.callbacks.TensorBoard(log_dir = "log")
     ]
 
 

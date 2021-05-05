@@ -21,6 +21,12 @@ def run_training(model_name):
                 batchsize=8,
                 workers=1)
 
+    # Serializing json 
+    json_object = json.dumps(fitted_model.history, indent = 18)
+  
+    # Writing to sample.json
+    with open("Output_training.json", "w") as outfile:
+      outfile.write(json_object)
 
     img_files = glob.glob('../data/test/*.jpg')
     print("Result:")
