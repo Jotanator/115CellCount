@@ -4,6 +4,7 @@ import numpy as np
 import model
 import data
 from PIL import Image
+import json
 
 
 def run_training(model_name):
@@ -15,8 +16,8 @@ def run_training(model_name):
                             test_img_files,
                             scale_invariant=True)
 
-    do_unet.fit(model_name,
-                epochs=100,
+    fitted_model = do_unet.fit(model_name,
+                epochs=10,
                 imgs_per_epoch=1000,
                 batchsize=8,
                 workers=1)
@@ -27,6 +28,10 @@ def run_training(model_name):
     # Writing to sample.json
     with open("Output_training.json", "w") as outfile:
       outfile.write(json_object)
+
+    print('printing summary')
+    do_unet.model.summary()
+    print('printed summary')
 
     img_files = glob.glob('../data/test/*.jpg')
     print("Result:")

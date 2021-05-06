@@ -107,7 +107,7 @@ def get_callbacks(name):
                                            save_best_only=True,
                                            save_weights_only=True,
                                            verbose=1),
-       tf.keras.callbacks.TensorBoard(log_dir = "log")
+        tf.keras.callbacks.TensorBoard(log_dir = "log")
     ]
 
 
