@@ -22,7 +22,7 @@ def convert_json(oldJ):
     for shape in oldJ['shapes']:
         mark = {
             'shape': 5, # idk what 5 means, i'm just matching what they have
-            'vertices': [{'x': point[0], 'y': point[1]} for point in shape['points']], # old is list of lists, new is list of dicts
+            'vertices': [{'x': int(point[0]), 'y': int(point[1])} for point in shape['points']], # old is list of lists, new is list of dicts
             'bounding_box': {}, # computed below
             'object_label': shape['label'],
             'marker': 'DESKTOP-5GQQF3B', # ???
@@ -34,14 +34,14 @@ def convert_json(oldJ):
         minY = maxY = shape['points'][0][1]
         for point in shape['points']:
             if point[0] < minX:
-                minX = point[0]
+                minX = int(point[0])
             elif point[0] > maxX:
-                maxX = point[0]
+                maxX = int(point[0])
 
             if point[1] < minY:
-                minY = point[1]
+                minY = int(point[1])
             elif point[1] > maxY:
-                maxY = point[1]
+                maxY = int(point[1])
 
         mark['bounding_box'] = {
                 "top_left": {
