@@ -37,12 +37,10 @@ def convert_json(oldJ):
     return newJ
 
 if __name__ == '__main__':
-
-    output = dict()
-
     outfilename = 'via_region_data.json'
 
     for folder in ['val', 'train']:
+        output = dict()
         for filename in os.listdir(folder):
             if filename.endswith('.json') and filename :
                 print("reading ", filename)
