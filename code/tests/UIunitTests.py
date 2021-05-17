@@ -13,7 +13,11 @@ import counterUI
 
 def modelOutputDummyTest():
     outputHandler = TMO.TestModelOutputHandler()
-    counterUI.showUI(outputHandler)  #any exceptions is a failure
+    root, canvas = counterUI.initUI()
+    counterUI.appHeader(root, canvas, outputHandler)  #any exceptions is a failure
+    counterUI.showFileUploadButton(root, canvas, outputHandler)
+    counterUI.showUI(root)
+    
 
 if __name__ == '__main__':
     modelOutputDummyTest()

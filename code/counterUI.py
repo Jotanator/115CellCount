@@ -4,30 +4,33 @@ from tkinter import filedialog
 import csv
 import modelOutputInterface as mOI
 
-
-
-
-def showUI(outputHandler):
-    root= tk.Tk()
-
+def initUI():
+    root = tk.Tk()
     root.title("Cell Counting Application")
 
     canvas1=tk.Canvas(root, width=1000, height=1000, relief="raised")
     canvas1.pack()
+    
+    return root, canvas1
+    
+def showUI(root):
+    root.mainloop()
 
+
+def appHeader(root, canvas1, outputHandler):
     label1=tk.Label(root, text="Cell Counting Application!")
     label1.config(font=("helvetica", 14))
     canvas1.create_window(500, 25, window=label1)
 
+    
+def showFileUploadButton(root, canvas1, outputHandler):
     label2=tk.Label(root, text="Browse for image:")
     label2.config(font=("helvetica", 10))
 
     canvas1.create_window(500, 50, window=label2)
-    
+
     browseButton=tk.Button(text="Browse", command= lambda: (browseFilesys(root, canvas1, outputHandler)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
     canvas1.create_window(500, 100, window=browseButton)
-
-    root.mainloop()
     
 def browseFilesys(root, canvas1, outputHandler):
     filename = filedialog.askopenfilename()
@@ -51,7 +54,10 @@ def browseFilesys(root, canvas1, outputHandler):
     
     downloadButton=tk.Button(text="Download information about file", command= lambda: (writeToCSV(filename, 14, 0.4)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
     canvas1.create_window(500, 200, window=downloadButton)
-    
+
+def showCSVDownloadButton(canvas1, filename, number, percent):
+    downloadButton=tk.Button(text="Download information about file", command= lambda: (writeToCSV(filename, number, percent)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
+    canvas1.create_window(500, 200, window=downloadButton)
     
 def writeToCSV(filename, number, percent):
     with open(filename+'.csv', 'w', newline='') as file:
