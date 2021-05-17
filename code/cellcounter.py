@@ -3,7 +3,7 @@ from PIL import ImageTk, Image
 from tkinter import filedialog
 import csv
 import modelOutputInterface as mOI
-import TestModelOutputHandler as TMO  # SHOULD BE REMOVED FOR RELEASE
+import tests.TestModelOutputHandler as TMO  # SHOULD BE REMOVED FOR RELEASE
 
 def showUI(outputHandler):
     root= tk.Tk()
