@@ -9,11 +9,11 @@ sys.path.insert(0, parentdir)
 
 import modelOutputInterface as mOI
 import tests.TestModelOutputHandler as TMO
-import cellcounter
+import counterUI
 
 def modelOutputDummyTest():
     outputHandler = TMO.TestModelOutputHandler()
-    cellcounter.showUI(outputHandler)  #any exceptions is a failure
+    counterUI.showUI(outputHandler)  #any exceptions is a failure
 
 if __name__ == '__main__':
     modelOutputDummyTest()
