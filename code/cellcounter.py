@@ -2,6 +2,8 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import filedialog
 import csv
+import modelOutputInterface as mOI
+import TestModelOutputHandler as TMO  # SHOULD BE REMOVED FOR RELEASE
 
 def showUI(outputHandler):
     root= tk.Tk()
@@ -34,7 +36,8 @@ def showUI(outputHandler):
         label3=tk.Label(root, text="Image is: "+filename, font=("helvetica", 10))
         canvas1.create_window(500, 125, window=label3)
 
-        label4=tk.Label(root, text="Some text about count here", font=("helvetica", 10))
+        countMsg = "There are "+ str(outputHandler.getPrediction()) + " cells in this image"
+        label4=tk.Label(root, text=countMsg, font=("helvetica", 10))
         canvas1.create_window(500, 150, window=label4)
 
         number = 14;
@@ -60,4 +63,5 @@ def showUI(outputHandler):
 
 
 if __name__ == '__main__':
-    showUI(1)
+    outputHandler = TMO.TestModelOutputHandler()
+    showUI(outputHandler)
