@@ -3,7 +3,6 @@ from PIL import ImageTk, Image
 from tkinter import filedialog
 import csv
 import modelOutputInterface as mOI
-import tests.TestModelOutputHandler as TMO  # SHOULD BE REMOVED FOR RELEASE
 
 def showUI(outputHandler):
     root= tk.Tk()
@@ -60,8 +59,3 @@ def showUI(outputHandler):
     canvas1.create_window(500, 100, window=browseButton)
 
     root.mainloop()
-
-
-if __name__ == '__main__':
-    outputHandler = TMO.TestModelOutputHandler()
-    showUI(outputHandler)
