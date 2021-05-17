@@ -52,8 +52,8 @@ def browseFilesys(root, canvas1, outputHandler):
     label4=tk.Label(root, text=countMsg, font=("helvetica", 10))
     canvas1.create_window(500, 150, window=label4)
     
-    downloadButton=tk.Button(text="Download information about file", command= lambda: (writeToCSV(filename, 14, 0.4)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
-    canvas1.create_window(500, 200, window=downloadButton)
+    showCSVDownloadButton(canvas1, filename, 17, 0.4)
+    
 
 def showCSVDownloadButton(canvas1, filename, number, percent):
     downloadButton=tk.Button(text="Download information about file", command= lambda: (writeToCSV(filename, number, percent)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
