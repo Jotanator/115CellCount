@@ -62,7 +62,7 @@ def showCSVDownloadButton(canvas1, filename, number, percent):
 def writeToCSV(filename, number, percent):
     with open(filename+'.csv', 'w', newline='') as file:
         writer = csv.writer(file)
-    writer.writerow(["This is the information for "+str(filename)])
-    writer.writerow(["Number of cells is: "+str(number)])
-    writer.writerow(["Percent of alive cells is: "+str(percent*100)+"%"])
-    writer.writerow(["This is all hardcoded"])
+        writer.writerow(["This is the information for "+str(filename)])
+        writer.writerow(["Number of cells is: "+str(number)])
+        writer.writerow(["Percent of alive cells is: "+str(percent*100)+"%"])
+        writer.writerow(["This is all hardcoded"])
