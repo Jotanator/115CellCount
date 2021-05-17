@@ -24,7 +24,7 @@ def showUI(outputHandler):
 
     canvas1.create_window(500, 50, window=label2)
     
-    browseButton=tk.Button(text="Browse", command=browseFilesys(root, canvas1, outputHandler), bg="brown", fg="white", font=("helvetica", 9, "bold"))
+    browseButton=tk.Button(text="Browse", command= lambda: (browseFilesys(root, canvas1, outputHandler)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
     canvas1.create_window(500, 100, window=browseButton)
 
     root.mainloop()
@@ -49,7 +49,7 @@ def browseFilesys(root, canvas1, outputHandler):
     label4=tk.Label(root, text=countMsg, font=("helvetica", 10))
     canvas1.create_window(500, 150, window=label4)
     
-    downloadButton=tk.Button(text="Download information about file", command=writeToCSV(filename, 14, 0.4), bg="brown", fg="white", font=("helvetica", 9, "bold"))
+    downloadButton=tk.Button(text="Download information about file", command= lambda: (writeToCSV(filename, 14, 0.4)), bg="brown", fg="white", font=("helvetica", 9, "bold"))
     canvas1.create_window(500, 200, window=downloadButton)
     
     
