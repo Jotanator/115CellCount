@@ -17,7 +17,7 @@ def showUI(root):
     root.mainloop()
 
 
-def appHeader(root, canvas, outputHandler):
+def appHeader(root, canvas):
     label1=tk.Label(root, text="Cell Counting Application!")
     label1.config(font=("helvetica", 14))
     canvas.create_window(500, 25, window=label1)
