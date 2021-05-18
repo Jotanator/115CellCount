@@ -1,5 +1,5 @@
 class FileUploadHandlerInterface():
-    """Any handler that connects the Model's predictions to the UI must implement the following methods"""
+    """Any handler that allows the user to select a file from their computer for use in the program."""
 
     def openUploadPrompt():
         pass
