@@ -8,7 +8,7 @@ sys.path.insert(0, parentdir)
 
 
 import modelOutputInterface as mOI
-import tests.TestModelOutputHandler as TMO
+import TestModelOutputHandler as TMO
 import counterUI
 
 def modelOutputDummyTest():

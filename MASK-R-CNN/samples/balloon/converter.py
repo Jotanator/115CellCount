@@ -13,7 +13,7 @@ def convert_json(oldJ):
 
     newJ['fileref'] = ""
     newJ['size'] = oldJ['imageWidth'] * oldJ['imageHeight']
-    newJ['filename'] = oldJ['imagePath'][15:] # "imagePath": "../Cell Photos/92.1 cells (092820, P11, 20X, S2).jpg"
+    newJ['filename'] = oldJ['imagePath'].split('/')[-1] # "imagePath": "../Cell Photos/92.1 cells (092820, P11, 20X, S2).jpg"
     newJ['base64_img_data'] = ""
     newJ['file_attributes'] = {}
     

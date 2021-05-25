@@ -3,6 +3,7 @@ from PIL import ImageTk, Image
 from tkinter import filedialog
 import csv
 import modelOutputInterface as mOI
+import predictor
 
 def showUI(outputHandler):
     root= tk.Tk()
@@ -35,20 +36,22 @@ def showUI(outputHandler):
         label3=tk.Label(root, text="Image is: "+filename, font=("helvetica", 10))
         canvas1.create_window(500, 125, window=label3)
 
-        countMsg = "There are "+ str(outputHandler.getPrediction()) + " cells in this image"
+        count = predictor.predict(filename)
+        size = 3.8
+
+        #countMsg = "There are "+ str(outputHandler.getPrediction()) + " cells in this image"
+        countMsg = "There are "+ str(count) + " cells in this image"
+        #predictor.predict()
+        #countMsg = "There are "+ "temp" + " cells in this image"
         label4=tk.Label(root, text=countMsg, font=("helvetica", 10))
         canvas1.create_window(500, 150, window=label4)
-
-        number = 14;
-        percent = .40
 
         def writeToCSV():
                 with open(filename+'.csv', 'w', newline='') as file:
                     writer = csv.writer(file)
-                writer.writerow(["This is the information for "+str(filename)])
-                writer.writerow(["Number of cells is: "+str(number)])
-                writer.writerow(["Percent of alive cells is: "+str(percent*100)+"%"])
-                writer.writerow(["This is all hardcoded"])
+                    writer.writerow(["This is the information for "+str(filename)])
+                    writer.writerow(["Number of cells is: "+str(count)])
+                    writer.writerow(["Average size of cells is: "+str(size)+" nm"])
 
         downloadButton=tk.Button(text="Download information about file", command=writeToCSV, bg="brown", fg="white", font=("helvetica", 9, "bold"))
         canvas1.create_window(500, 200, window=downloadButton)
