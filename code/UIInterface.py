@@ -29,7 +29,7 @@ class UIInterface():
         root.photo = background_image
         root.grid()
 
-        label3 = tk.Label(root, text="Image is: "+filename,
+        label3 = tk.Label(root, text="Image is: " + filename,
                           font=("helvetica", 10))
         canvas.create_window(500, 125, window=label3)
 
