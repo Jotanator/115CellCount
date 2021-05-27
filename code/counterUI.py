@@ -5,60 +5,88 @@ import csv
 import modelOutputInterface as mOI
 import predictor
 
+
 def showUI(outputHandler):
-    root= tk.Tk()
+    root = tk.Tk()
 
     root.title("Cell Counting Application")
 
-    canvas1=tk.Canvas(root, width=1000, height=1000, relief="raised")
+    canvas1 = tk.Canvas(root, width=1000, height=1000, relief="raised")
     canvas1.pack()
 
-    label1=tk.Label(root, text="Cell Counting Application!")
+    label1 = tk.Label(root, text="Cell Counting Application!")
     label1.config(font=("helvetica", 14))
     canvas1.create_window(500, 25, window=label1)
 
-    label2=tk.Label(root, text="Browse for image:")
+    label2 = tk.Label(root, text="Browse for image:")
     label2.config(font=("helvetica", 10))
 
     def browseFilesys():
         filename = filedialog.askopenfilename()
         try:
-            background_image=ImageTk.PhotoImage(Image.open(filename))
-        except:
-            label3=tk.Label(root, text="Please input a valid relative or absolute file location", font=("helvetica", 10))
+            background_image = ImageTk.PhotoImage(Image.open(filename))
+        except (OSError, IOError):
+            label3 = tk.Label(root,
+                              text="Please input a valid relative "
+                              + "or absolute file location",
+                              font=("helvetica", 10))
             canvas1.create_window(500, 250, window=label3)
             return
-        background_label=tk.Label(root, image=background_image)
+        background_label = tk.Label(root, image=background_image)
         background_label.place(x=0, y=150, relwidth=1, relheight=1)
         root.photo = background_image
         root.grid()
 
-        label3=tk.Label(root, text="Image is: "+filename, font=("helvetica", 10))
+        label3 = tk.Label(
+            root,
+            text="Image is: " +
+            filename,
+            font=(
+                "helvetica",
+                10))
         canvas1.create_window(500, 125, window=label3)
 
         count = predictor.predict(filename)
         size = 3.8
 
-        #countMsg = "There are "+ str(outputHandler.getPrediction()) + " cells in this image"
-        countMsg = "There are "+ str(count) + " cells in this image"
-        #predictor.predict()
-        #countMsg = "There are "+ "temp" + " cells in this image"
-        label4=tk.Label(root, text=countMsg, font=("helvetica", 10))
+        # countMsg = "There are "+ str(outputHandler.getPrediction()) + " cells in this image"
+        countMsg = "There are " + str(count) + " cells in this image"
+        # predictor.predict()
+        # countMsg = "There are "+ "temp" + " cells in this image"
+        label4 = tk.Label(root, text=countMsg, font=("helvetica", 10))
         canvas1.create_window(500, 150, window=label4)
 
         def writeToCSV():
-                with open(filename+'.csv', 'w', newline='') as file:
-                    writer = csv.writer(file)
-                    writer.writerow(["This is the information for "+str(filename)])
-                    writer.writerow(["Number of cells is: "+str(count)])
-                    writer.writerow(["Average size of cells is: "+str(size)+" nm"])
+            with open(filename + '.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(
+                    ["This is the information for " + str(filename)])
+                writer.writerow(["Number of cells is: " + str(count)])
+                writer.writerow(
+                    ["Average size of cells is: " + str(size) + " nm"])
 
-        downloadButton=tk.Button(text="Download information about file", command=writeToCSV, bg="brown", fg="white", font=("helvetica", 9, "bold"))
+        downloadButton = tk.Button(
+            text="Download information about file",
+            command=writeToCSV,
+            bg="brown",
+            fg="white",
+            font=(
+                "helvetica",
+                9,
+                "bold"))
         canvas1.create_window(500, 200, window=downloadButton)
 
     canvas1.create_window(500, 50, window=label2)
-    
-    browseButton=tk.Button(text="Browse", command=browseFilesys, bg="brown", fg="white", font=("helvetica", 9, "bold"))
+
+    browseButton = tk.Button(
+        text="Browse",
+        command=browseFilesys,
+        bg="brown",
+        fg="white",
+        font=(
+            "helvetica",
+            9,
+            "bold"))
     canvas1.create_window(500, 100, window=browseButton)
 
     root.mainloop()
