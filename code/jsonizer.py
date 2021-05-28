@@ -3,7 +3,6 @@ import os
 from PIL import Image
 
 def jsonize(filename):
-	#print(filename)
 	width, height = Image.open(filename).size
 	size = width*height
 	copyfile(filename, os.path.abspath("../data/val/image.jpg"))

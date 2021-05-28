@@ -86,7 +86,7 @@ def predict(filename):
 	r = results[0]
 	visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
                             	dataset.class_names, r['scores'],# ax=ax,
-                            	title="Predictions")
+                            	title="Predictions on "+filename)
 	#log("gt_class_id", gt_class_id)
 	#log("gt_bbox", gt_bbox)
 	#log("gt_mask", gt_mask)
