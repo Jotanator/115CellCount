@@ -9,9 +9,10 @@ from shutil import copyfile
 
 def showUI(outputHandler):
     root= tk.Tk()
-    #root.state('zoomed')
+    root.state('zoomed')
 
     root.title("Cell Counting Application")
+    root.minsize(1000, 1000)
 
     canvas=tk.Canvas(root, width=1000, height=1000, relief="raised")
     canvas.pack()
@@ -33,7 +34,6 @@ def showUI(outputHandler):
 
     def browseDirectory():
         dirName = filedialog.askdirectory(mustexist=True)
-        x, y = 240, 250
 
         # which image to process
         index = tk.IntVar(value=0)
@@ -48,9 +48,7 @@ def showUI(outputHandler):
                 if filename.endswith(".png") or filename.endswith(".jpg"):
                     # valid image, process it
                     print('Processing:', os.path.join(dirName, filename))
-                    processImage(os.path.join(dirName, filename), x, y)
-                    x -= 50
-                    y += 50
+                    processImage(os.path.join(dirName, filename))
                 else:
                     # skip this one, go to next
                     print('Not an image:', filename)
@@ -60,10 +58,10 @@ def showUI(outputHandler):
                 # wait until nextButton is pressed
                 nextButton.wait_variable(index)
             
-    def processImage(filename, x=240, y=250):
-        try:
+    def processImage(filename):
+        if filename.endswith(".png") or filename.endswith(".jpg"):
             background_image=ImageTk.PhotoImage(Image.open(filename))
-        except:
+        else:
             imageNameLabel.config(text="")
             countLabel.config(text="")
             errorLabel.config(text="Please input a valid relative or absolute file location")
@@ -75,11 +73,19 @@ def showUI(outputHandler):
         count = predictor.predict(filename)
 
         predictionFile = Image.open(os.path.abspath("predictions.png"))
-        width, height = predictionFile.size
+        imageHeight, imageWidth = predictionFile.size
+        areaHeight = root.winfo_height()-250
+        areaWidth = root.winfo_width()
+        heightRatio = areaHeight/imageHeight
+        widthRatio = areaWidth/imageWidth
+        ratio = min(heightRatio, widthRatio)
+        newHeight = int(imageHeight*ratio)
+        newWidth = int(imageWidth*ratio)
+        predictionFile = predictionFile.resize((newHeight, newWidth), Image.ANTIALIAS)
         background_image=ImageTk.PhotoImage(predictionFile)
 
         background_label=tk.Label(root, image=background_image)
-        background_label.place(x=x, y=y, relwidth=0.75, relheight=0.75)
+        background_label.place(x=int((areaWidth-newWidth)/2.0), y=250, height=newHeight, width=newWidth)
         root.photo = background_image
         root.grid()
 
