@@ -14,10 +14,12 @@ import tests.TestModelOutputHandler as TMO
 import counterUI
 
 def minimalUITest():
+    # This is a minimal test to make sure Tkinter works on the environment
     root, canvas = counterUI.initUI()
     counterUI.showUI(root)
     
 def customElementUITest():
+    #This is a test to make sure we can call some of the counterUI functions
     root, canvas = counterUI.initUI()
     counterUI.appHeader(root, canvas)
     
@@ -31,6 +33,7 @@ def customElementUITest():
     counterUI.showUI(root)
 
 def modelOutputDummyTest():
+    # This is a full test of the entire UI
     outputHandler = TMO.TestModelOutputHandler()
     root, canvas = counterUI.initUI()
     counterUI.appHeader(root, canvas)  #any exceptions is a failure
