@@ -9,7 +9,7 @@ from shutil import copyfile
 
 def showUI(outputHandler):
     root= tk.Tk()
-    root.state('zoomed')
+    #root.state('zoomed')
 
     root.title("Cell Counting Application")
 
@@ -31,8 +31,36 @@ def showUI(outputHandler):
     countLabel=tk.Label(root, text="", font=("helvetica", 10))
     canvas.create_window(500, 150, window=countLabel)
 
-    def browseFilesys():
-        filename = filedialog.askopenfilename()
+    def browseDirectory():
+        dirName = filedialog.askdirectory(mustexist=True)
+        x, y = 240, 250
+
+        # which image to process
+        index = tk.IntVar(value=0)
+
+        if (dirName):
+            nextButton=tk.Button(text="Next Image", command=lambda : index.set(index.get() + 1), bg="brown", fg="white", font=("helvetica", 9, "bold"))
+            canvas.create_window(500, 240, window=nextButton)
+
+            filenames = os.listdir(dirName)
+            while index.get() < len(filenames):
+                filename = filenames[index.get()]
+                if filename.endswith(".png") or filename.endswith(".jpg"):
+                    # valid image, process it
+                    print('Processing:', os.path.join(dirName, filename))
+                    processImage(os.path.join(dirName, filename), x, y)
+                    x -= 50
+                    y += 50
+                else:
+                    # skip this one, go to next
+                    print('Not an image:', filename)
+                    index.set(index.get() + 1)
+                    continue
+
+                # wait until nextButton is pressed
+                nextButton.wait_variable(index)
+            
+    def processImage(filename, x=240, y=250):
         try:
             background_image=ImageTk.PhotoImage(Image.open(filename))
         except:
@@ -51,7 +79,7 @@ def showUI(outputHandler):
         background_image=ImageTk.PhotoImage(predictionFile)
 
         background_label=tk.Label(root, image=background_image)
-        background_label.place(x=240, y=250, relwidth=0.75, relheight=0.75)
+        background_label.place(x=x, y=y, relwidth=0.75, relheight=0.75)
         root.photo = background_image
         root.grid()
 
@@ -82,7 +110,14 @@ def showUI(outputHandler):
         downloadImageButton=tk.Button(text="Download prediction image", command=downloadImage, bg="brown", fg="white", font=("helvetica", 9, "bold"))
         canvas.create_window(500, 210, window=downloadImageButton)
 
+    def browseFilesys():
+        filename = filedialog.askopenfilename()
+        processImage(filename)
+
     browseButton=tk.Button(text="Browse", command=browseFilesys, bg="brown", fg="white", font=("helvetica", 9, "bold"))
     canvas.create_window(500, 100, window=browseButton)
+
+    browseButton2=tk.Button(text="Browse Directory", command=browseDirectory, bg="brown", fg="white", font=("helvetica", 9, "bold"))
+    canvas.create_window(600, 100, window=browseButton2)
 
     root.mainloop()
