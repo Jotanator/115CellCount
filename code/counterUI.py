@@ -9,6 +9,7 @@ from shutil import copyfile
 
 def showUI(outputHandler):
     root= tk.Tk()
+    root.state('zoomed')
 
     root.title("Cell Counting Application")
 
@@ -45,9 +46,12 @@ def showUI(outputHandler):
 
         count = predictor.predict(filename)
 
-        background_image=ImageTk.PhotoImage(Image.open(os.path.abspath("predictions.png")))
+        predictionFile = Image.open(os.path.abspath("predictions.png"))
+        width, height = predictionFile.size
+        background_image=ImageTk.PhotoImage(predictionFile)
+
         background_label=tk.Label(root, image=background_image)
-        background_label.place(x=0, y=250, relwidth=1, relheight=1)
+        background_label.place(x=240, y=250, relwidth=0.75, relheight=0.75)
         root.photo = background_image
         root.grid()
 
