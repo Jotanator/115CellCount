@@ -12,6 +12,7 @@ import sys
 import random
 import itertools
 import colorsys
+import inspect
 
 import numpy as np
 from skimage.measure import find_contours
@@ -21,10 +22,11 @@ from matplotlib.patches import Polygon
 import IPython.display
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("../")
+MRCNN_DIR = os.path.join(os.path.dirname(
+    os.path.abspath(inspect.getfile(inspect.currentframe()))), "..")
 
 # Import Mask RCNN
-sys.path.append(ROOT_DIR)  # To find local version of the library
+sys.path.append(MRCNN_DIR)  # To find local version of the library
 from mrcnn import utils
 
 
@@ -165,7 +167,7 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     ax.imshow(masked_image.astype(np.uint8))
     #if auto_show:
     #    plt.show()
-    plt.savefig("predictions.png")
+    plt.savefig(os.path.join(MRCNN_DIR, "../val/predictions.png"))
 
 
 def display_differences(image,
