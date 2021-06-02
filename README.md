@@ -35,6 +35,7 @@ If it is not, run:
 conda activate NameOfEnv
 ```
 
+where "NameOfEnv" is replaced by whatever you named the environment.
 Next, cd to the 115CellCount directory and run:
 
 ```
