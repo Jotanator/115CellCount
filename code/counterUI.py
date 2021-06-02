@@ -37,7 +37,7 @@ def showUI(outputHandler):
     canvas.create_window(500, 125, window=imageNameLabel)
     # Label for the error message
     errorLabel = tk.Label(root, text="", font=("helvetica", 10))
-    canvas.create_window(350, 100, window=errorLabel)
+    canvas.create_window(300, 100, window=errorLabel)
     # Label for displaying the cell count
     countLabel = tk.Label(root, text="", font=("helvetica", 10))
     canvas.create_window(500, 150, window=countLabel)
