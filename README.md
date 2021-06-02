@@ -3,6 +3,11 @@
 Our code is based on the code from https://github.com/matterport/Mask_RCNN.
 
 ## Installation and setup
+Before cloning this repository, be sure to install git LFS (Large File System).
+Open your terminal (or git bash if you are using windows) and run the command:
+$git lfs install
+
+Afterwards, clone the repository as usual. 
 
 To install the code, you need to install anaconda.
 After installing, you should be able to create a new anaconda environment.
