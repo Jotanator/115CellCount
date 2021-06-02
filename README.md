@@ -8,7 +8,7 @@ Any other operating system we are not aware whether it will work or not so run a
 
 ## Installation and setup
 Before cloning this repository, be sure to install git LFS (Large File System).
-If on windows or Mac, download LFS from the git lfs website.
+If on windows or Mac, download LFS from the git lfs website. If on Linux, download it using your package manager
 Then, open your terminal (or git bash if you are using windows) and run the command:
 ```
 git lfs install
