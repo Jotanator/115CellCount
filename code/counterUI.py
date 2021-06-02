@@ -69,7 +69,7 @@ def showUI(outputHandler):
             nextButton = tk.Button(
                 text="Next Image",
                 command=nextIndex,
-                bg="brown",
+                bg="yellow",
                 fg="black",
                 font=("helvetica", 9, "bold"))
             # Get the filenames
@@ -205,7 +205,7 @@ def showUI(outputHandler):
         downloadCSVButton = tk.Button(
             text="Download information about file",
             command=downloadCSV,
-            bg="brown",
+            bg="yellow",
             fg="black",
             font=("helvetica", 9, "bold"))
         canvas.create_window(500, 180, window=downloadCSVButton)
@@ -233,7 +233,7 @@ def showUI(outputHandler):
         downloadImageButton = tk.Button(
             text="Download prediction image",
             command=downloadPredictionImage,
-            bg="brown",
+            bg="yellow",
             fg="black",
             font=("helvetica", 9, "bold"))
         canvas.create_window(500, 210, window=downloadImageButton)
@@ -251,7 +251,7 @@ def showUI(outputHandler):
     browseFilesysButton = tk.Button(
         text="Browse",
         command=browseFilesys,
-        bg="brown",
+        bg="yellow",
         fg="black",
         font=("helvetica", 9, "bold"))
     canvas.create_window(500, 100, window=browseFilesysButton)
@@ -259,7 +259,7 @@ def showUI(outputHandler):
     browseDirectoryButton = tk.Button(
         text="Browse Directory",
         command=browseDirectory,
-        bg="brown",
+        bg="yellow",
         fg="black",
         font=("helvetica", 9, "bold"))
     canvas.create_window(600, 100, window=browseDirectoryButton)
