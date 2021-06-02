@@ -2,6 +2,10 @@
 
 Our code is based on the code from https://github.com/matterport/Mask_RCNN.
 
+It is recommended to use windows to run this app, it works on mac but the UI does not look like as it should.
+
+Any other operating system we are not aware whether it will work or not so run at your at own risk.
+
 ## Installation and setup
 Before cloning this repository, be sure to install git LFS (Large File System).
 Open your terminal (or git bash if you are using windows) and run the command:
