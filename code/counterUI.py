@@ -72,7 +72,6 @@ def showUI(outputHandler):
                 bg="brown",
                 fg="white",
                 font=("helvetica", 9, "bold"))
-            canvas.create_window(500, 240, window=nextButton)
             # Get the filenames
             filenames = os.listdir(dirName)
 
@@ -81,23 +80,30 @@ def showUI(outputHandler):
             def indexLoop():
                 # Set index to 0 since we are at the beginning of the
                 # directory
-                index.set(0)
+                index.set(0)    
+                # Flag to check if we need to exit if there are 0 images
+                # but more than 0 nonimages
+                anyImages = False
                 # Loop to go through the directory
                 while index.get() < len(filenames):
                     # Get current filename
                     filename = filenames[index.get()]
                     # If the file is an image
                     if isImage(filename):
+                        # Display next button
+                        canvas.create_window(500, 240, window=nextButton)
                         # Process valid image
                         processImage(os.path.join(dirName, filename))
+                        anyImages = True
                     else:
                         # Skip invalid image
                         nextIndex()
                         continue
                     # Wait until nextButton is pressed
                     nextButton.wait_variable(index)
-                # Wrap around to the beginning of the directory
-                indexLoop()
+                # Wrap around to the beginning of the directory if we need to
+                if anyImages:
+                    indexLoop()
             # Initiate the loop
 
 
