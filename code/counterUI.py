@@ -70,7 +70,7 @@ def showUI(outputHandler):
                 text="Next Image",
                 command=nextIndex,
                 bg="brown",
-                fg="white",
+                fg="black",
                 font=("helvetica", 9, "bold"))
             # Get the filenames
             filenames = os.listdir(dirName)
@@ -206,7 +206,7 @@ def showUI(outputHandler):
             text="Download information about file",
             command=downloadCSV,
             bg="brown",
-            fg="white",
+            fg="black",
             font=("helvetica", 9, "bold"))
         canvas.create_window(500, 180, window=downloadCSVButton)
 
@@ -234,7 +234,7 @@ def showUI(outputHandler):
             text="Download prediction image",
             command=downloadPredictionImage,
             bg="brown",
-            fg="white",
+            fg="black",
             font=("helvetica", 9, "bold"))
         canvas.create_window(500, 210, window=downloadImageButton)
 
@@ -252,7 +252,7 @@ def showUI(outputHandler):
         text="Browse",
         command=browseFilesys,
         bg="brown",
-        fg="white",
+        fg="black",
         font=("helvetica", 9, "bold"))
     canvas.create_window(500, 100, window=browseFilesysButton)
     # Button for user to browse for a directory
@@ -260,7 +260,7 @@ def showUI(outputHandler):
         text="Browse Directory",
         command=browseDirectory,
         bg="brown",
-        fg="white",
+        fg="black",
         font=("helvetica", 9, "bold"))
     canvas.create_window(600, 100, window=browseDirectoryButton)
     # Window event loop
