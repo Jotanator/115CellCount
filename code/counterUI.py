@@ -12,7 +12,7 @@ def showUI(outputHandler):
     # Initialize root
     root = tk.Tk()
     # Window is fullscreen by default
-    root.state('zoomed')
+    #root.state('zoomed')
     # Window title
     root.title("Cell Counting Application")
     # Window minimum size
@@ -167,7 +167,7 @@ def showUI(outputHandler):
         # Place the image
         background_label.place(
             x=int((windowWidth - imageWidth) / 2.0),
-            y=250,
+            y=300,
             height=imageHeight,
             width=imageWidth)
         root.photo = background_image
@@ -254,7 +254,7 @@ def showUI(outputHandler):
         bg="yellow",
         fg="black",
         font=("helvetica", 9, "bold"))
-    canvas.create_window(500, 100, window=browseFilesysButton)
+    canvas.create_window(425, 100, window=browseFilesysButton)
     # Button for user to browse for a directory
     browseDirectoryButton = tk.Button(
         text="Browse Directory",
@@ -262,6 +262,6 @@ def showUI(outputHandler):
         bg="yellow",
         fg="black",
         font=("helvetica", 9, "bold"))
-    canvas.create_window(600, 100, window=browseDirectoryButton)
+    canvas.create_window(540, 100, window=browseDirectoryButton)
     # Window event loop
     root.mainloop()
