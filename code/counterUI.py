@@ -12,7 +12,7 @@ def showUI(outputHandler):
     # Initialize root
     root = tk.Tk()
     # Window is fullscreen by default
-    #root.state('zoomed')
+    root.state('zoomed')
     # Window title
     root.title("Cell Counting Application")
     # Window minimum size
