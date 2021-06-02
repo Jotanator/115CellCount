@@ -6,7 +6,7 @@ Our code is based on the code from https://github.com/matterport/Mask_RCNN.
 Before cloning this repository, be sure to install git LFS (Large File System).
 Open your terminal (or git bash if you are using windows) and run the command:
 ```
-$git lfs install
+git lfs install
 ```
 
 Afterwards, clone the repository as usual. 
